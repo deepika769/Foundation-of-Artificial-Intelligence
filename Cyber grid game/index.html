@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Cyber-Grid: Payload Escort</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">AI NETWORK DEFENSE // PROJECT 07</p>
+      <h1>NEON CYBER-GRID <span>:</span> PAYLOAD ESCORT</h1>
+      <p class="subtitle">Guide the data payload through a hostile cyber-city before the Grid Master destroys it.</p>
+    </div>
+    <div class="status-chip" id="connectionStatus">● NETWORK ONLINE</div>
+  </header>
+
+  <main class="app">
+    <section class="game-panel panel">
+      <div class="panel-heading">
+        <div>
+          <span class="panel-kicker">LIVE NETWORK MAP</span>
+          <h2>PAYLOAD ROUTING GRID</h2>
+        </div>
+        <div class="controls">
+          <button id="startBtn" class="btn btn-primary">▶ START MISSION</button>
+          <button id="pauseBtn" class="btn" disabled>Ⅱ PAUSE</button>
+          <button id="stepBtn" class="btn" disabled>STEP</button>
+          <button id="resetBtn" class="btn btn-danger">↻ RESET</button>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="gameCanvas" width="960" height="620" aria-label="Neon Cyber-Grid game board"></canvas>
+      </div>
+
+      <div class="player-help"><strong>PLAYER CONTROL:</strong> Click a glowing adjacent node or use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / arrow keys. Each move gives the Grid Master one response.</div>
+
+      <div class="legend">
+        <span><i class="swatch optic"></i> Optic / 1</span>
+        <span><i class="swatch standard"></i> Standard / 3</span>
+        <span><i class="swatch encrypted"></i> Encrypted / 8</span>
+        <span><i class="swatch blocked"></i> Firewall</span>
+        <span><i class="swatch route"></i> Current route</span>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <section class="panel telemetry">
+        <div class="panel-kicker">PAYLOAD STATUS</div>
+        <div class="health-row">
+          <div>
+            <div class="metric-label">INTEGRITY</div>
+            <div class="health-value" id="healthValue">100%</div>
+          </div>
+          <div class="health-ring" id="healthRing"><span>100</span></div>
+        </div>
+        <div class="health-track"><div id="healthBar"></div></div>
+
+        <div class="metrics-grid">
+          <div class="metric"><span>LEVEL</span><strong id="levelValue">1</strong></div>
+          <div class="metric"><span>CYCLE</span><strong id="cycleValue">0</strong></div>
+          <div class="metric"><span>ROUTE COST</span><strong id="costValue">0</strong></div>
+          <div class="metric"><span>NODES</span><strong id="nodesValue">0</strong></div>
+          <div class="metric"><span>ALGORITHM</span><strong id="algorithmValue">UCS</strong></div>
+        </div>
+        <div class="route-points">
+          <span>ORIGIN <b id="originValue">0,3</b></span>
+          <span>UPLOAD <b id="destinationValue">11,4</b></span>
+        </div>
+      </section>
+
+      <section class="panel ai-panel">
+        <div class="panel-kicker">GRID MASTER AI</div>
+        <div class="ai-title-row">
+          <h2>HOSTILE DECISION ENGINE</h2>
+          <span class="depth-badge">DEPTH <b id="depthValue">3</b></span>
+        </div>
+
+        <div class="decision-box">
+          <span>LAST ACTION</span>
+          <strong id="enemyAction">Waiting for command...</strong>
+        </div>
+
+        <div class="decision-box">
+          <span>EVALUATION</span>
+          <strong id="scoreValue">0</strong>
+        </div>
+
+        <div class="log" id="eventLog" aria-live="polite"></div>
+      </section>
+
+      <section class="panel objectives">
+        <div class="panel-kicker">MISSION</div>
+        <ul>
+          <li id="objectiveRoute">Find a low-cost route to the Upload Server.</li>
+          <li id="objectiveThreat">Survive ICE drones and firewalls.</li>
+          <li id="objectiveUpload">Deliver the payload with integrity above 0%.</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <span>UCS = cost-optimal routing</span>
+    <span>A* = dynamic rerouting</span>
+    <span>α-β = adversarial decision pruning</span>
+  </footer>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
